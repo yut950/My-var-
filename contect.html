@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min/css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: rgb(236, 243, 247);
+            display:flex;
+       
+            text-align: center;
+            height: 100vh;
+        }
+
+
+        .hello {
+            width: 500px;
+            height: 250px;
+
+            padding: 22px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px #131010;
+            text-align: center;
+            display: 1;
+            justify-content: center;
+            border-radius: 8px;
+
+        }
+
+        fieldset {
+            width: 494px;
+            height: 250px;
+            border: none;
+            color: #000;
+            size: 33px;
+        }
+
+        label {
+            display: block;
+            color: #111213;
+            padding: 4px;
+        }
+
+        input {
+            width: 50%;
+            padding: 3px;
+            margin: 6px;
+            border: 1px solid #000;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 40%;
+            padding: 4px;
+            margin: 7px;
+            background-color: #07ccef;
+        }
+
+        .loct {
+            color: #0e0a0a;
+            text-align: center;
+            margin-top: 100px;
+            padding: 10px;
+            position: fixed;
+            width: 400px;
+            z-index: 100%;
+            align-items: center;
+            box-shadow: 1px 0 1px #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nass">
+        <h1>بنك المستقبل</h1>
+
+        <a href="index.html"> <i class=" index "></i>الرئيسية</a>
+        <a href="login.html"> <i class=" login "></i>تسجيل الدخول </a>
+        <a href="regist.html"> <i class=" regist "></i>فتح الحساب</a>
+        <a href="Transactions.html"> <i class=" transactions "></i>كشف الحسابات</a>
+        <a href="Transfar.html"> <i class=" transfar "></i>التحويلات</a>
+        <a href="Calculator.html"> <i class=" calculator "></i>اله حاسبه</a>
+        <a href="contect.html"> <i class=" contect "></i>اتصل بنا</a>
+    </div>
+    <div class="hello">
+        <fieldset>
+            <legend>تواصل معنا</legend>
+            <form onsubmit="return message()">
+                <label for="name">الاسم</label>
+                <input type="text" id="nname">
+                <br>
+                <label for="email">البريد الاكتروني</label>
+                <input type="email" id="eemail">
+                <br>
+                <label for="message">الرسالة</label>
+                <textarea name="message" id="mmessage"></textarea>
+                <br>
+                <button type="submit">ارسال</button>
+            </form>
+        </fieldset>
+
+        <div class="loct">
+            <h3>فروعنا</h3>
+            <p>صنعاء - الستين</p>
+            <p>عمران - شارع صنعاء</p>
+            <p>تعز - شارع جمال </p>
+            <h3>التواصل</h3>
+            <p></p>
+            <p></p>
+            <p>جميع الحقوق محفوظة - بنك المستقبل 2025</p>
+        </div>
+    </div>
+    <script>
+        function message() {
+            let name = document.getElementById("nname").value.trim();
+            let email = document.getElementById("eemail").value.trim();
+            let msg = document.getElementById("mmessage").value.trim();
+            if (name === "" || email === "" || msg === "") {
+                alert("يرجى ملء جميع الحقول");
+                return false;
+            }
+            alert("تم ارسال الرسالة");
+            return false;
+        };
+    </script>
+</body>
+
+</html>

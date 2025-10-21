@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min/css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            background-color: rgb(251, 251, 250);
+            margin: 20px;
+            display: flex;
+            height: 100vh;
+       }
+        
+             .cunctes{
+                margin: 50px;
+                padding: 2px;
+                overflow-y: auto;
+                box-shadow: 2px 0 11px #ccc;
+                border-radius: 8px;
+                text-align: center;
+                flex: 1;
+
+             }
+        button{
+            background-color: rgb(130, 127, 145);
+            color: #120f0f;
+            padding: 10px ;
+            width: 30%;
+            border: none;
+            font-size: 15px;  
+          
+        }
+        button:hover{
+            background-color: rgb(15, 104, 183);
+        }
+        table{
+            width: 96%;
+            background: white;
+            margin: 20px;
+            overflow: hidden;
+            border-collapse: collapse;
+            box-shadow: 0 0 5px #000;
+        }
+        th td{
+            border:1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+          }
+          th{
+            background-color: rgb(9, 15, 15);
+            color: #fff;
+          }
+
+    </style>
+</head>
+<body>
+
+
+
+    <div class="nass">
+        <h1>بنك المستقبل</h1>
+        
+           <a href="index.html"> <i class=" index "></i>الرئيسية</a>
+            <a href="login.html"> <i class=" login "></i>تسجيل الدخول </a> 
+            <a href="regist.html"> <i class=" regist "></i>فتح الحساب</a>
+             <a href="Transactions.html"> <i class="transaction"></i> كشف الحسابات</a>
+            <a href="Transfer.html"> <i class=" transfar "></i>التحويلات</a>
+            <a href="Calculator.html"> <i class=" calculator "></i>اله حاسبه</a>
+            <a href="contect.html"> <i class=" contect "></i>اتصل بنا</a>
+        
+    </div>
+    <div class="cunctes">
+    <h1>سجل العمليات</h1>
+    <div class="actions">
+        <button id="clearBtn">مسح</button>
+        <button id="exportBtn" >تصدير الى Exil</button>
+    </div>
+    <div id="noData" style="display:none;text-align:center;">لا توجد عمليات</div>
+    <table id="transactionsTable">
+        <thead>
+            <tr>
+                <th>النوع</th>
+                <th>التفاصيل</th>
+                <th>المبلغ</th>
+                <th>ملاحظات</th>
+                <th>التاريخ</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+    <script>
+        function loadTransactions(){
+            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            let tableBody = document.querySelector("#transactionsTable tbody");
+            let noDataDiv = document.getElementById("noData");
+            tableBody.innerHTML = "";
+            if (transactions.length === 0) {
+                noDataDiv.style.display = "block";
+                document.getElementById("transactionsTable").style.display = "none";
+                return;
+            }
+            noDataDiv.style.display = "none";
+            document.getElementById("transactionsTable").style.display = "table";
+            transactions.forEach(tx => {
+                let row = document.createElement("tr");
+                // النوع
+                let typeCell = document.createElement("td");
+                typeCell.textContent = tx.type;
+                row.appendChild(typeCell);
+                // التفاصيل
+                let detailsCell = document.createElement("td");
+                let details = "";
+                if (tx.type === "تحويل داخلي") {
+                    details = `من: ${tx.fromAccount} إلى: ${tx.toAccount}`;
+                } else if (tx.type === "تحويل خارجي") {
+                    details = `بنك: ${tx.bank} , IBAN: ${tx.iban}`;
+                } else if (tx.type === "تحويل دولي") {
+                    details = `مستفيد: ${tx.beneficiary}, بنك: ${tx.bank}`;
+                }
+                detailsCell.textContent = details;
+                row.appendChild(detailsCell);
+                // المبلغ
+                let amountCell = document.createElement("td");
+                amountCell.textContent = tx.amount;
+                row.appendChild(amountCell);
+                // الملاحظات
+                let notesCell = document.createElement("td");
+                notesCell.textContent = tx.notes || "-";
+                row.appendChild(notesCell);
+                // التاريخ
+                let dateCell = document.createElement("td");
+                dateCell.textContent = tx.date || "-";
+                row.appendChild(dateCell);
+                tableBody.appendChild(row);
+            });
+        }
+        window.onload = loadTransactions;
+        document.getElementById("clearBtn").onclick = function(){
+            if(confirm("هل تريد مسح جميع العمليات")){
+                localStorage.removeItem("transactions");
+                loadTransactions();
+            }
+        };
+    // زر التصدير إلى Excel
+    document.getElementById("exportBtn").onclick = function () {
+        // الحصول على الجدول
+        var table = document.getElementById("transactionsTable");
+        // إنشاء نص HTML للجدول فقط (بدون أزرار أو عناصر أخرى)
+        var html = table.outerHTML.replace(/ /g, '%20');
+        // إنشاء رابط تحميل
+        var link = document.createElement('a');
+        link.href = 'data:application/vnd.ms-excel,' + html;
+        link.download = 'transactions.xls';
+        link.click();
+        alert("تم التصدير بنجاح");
+    };
+
+
+    </script>
+</body>
+</html>

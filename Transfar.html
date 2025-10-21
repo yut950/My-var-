@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <!-- تعريف الترميز UTF-8 حتى يدعم اللغة العربية -->
+  <meta charset="UTF-8">
+  <!-- العنوان الذي يظهر في التبويب -->
+  <title>تحويل الأموال</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min/css">
+  <link rel="stylesheet" href="style.css">
+  <!-- تنسيقات بسيطة للتبويبات والنماذج -->
+  <style>
+    body {
+      font-family: Arial, sans-serif; /* خط الصفحة */
+     display: flex;
+     height: 100vh;
+     background-color: #4c5b53;
+   }
+
+          .box{
+            text-align: center;
+            margin: 40px;
+            box-shadow: 0 2px 5px #111;
+            border-radius: 8px;
+            display: 1;
+            padding: 20px;
+            width: 70%;
+            background-color: rgb(101, 135, 185);
+          }
+    .tabs {
+      display: flex; /* عرض الأزرار بجانب بعض */
+      gap: 10px; /* مسافة بين الأزرار */
+      margin-bottom: 20px;
+      
+    }
+    .tab-button {
+      padding: 10px 20px;
+      cursor: pointer; /* شكل اليد عند التمرير */
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #dbc7c7;
+      
+    }
+    .tab-button.active {
+      background-color: #333;
+      color: white;
+    }
+    .tab-content {
+      display: none; /* نخفي كل النماذج أولاً */
+    }
+    .tab-content.active {
+      display: block; /* إظهار النموذج النشط */
+      background: #333;
+    }
+    form {
+      border: 1px solid #130f0f;
+      padding: 15px;
+      border-radius: 10px;
+     background: #81988a;
+      max-width: 400px;
+    }
+   
+    input, select, button {
+      display: block; /* كل عنصر في سطر جديد */
+      width: 77%; /* يأخذ عرض النموذج */
+      margin-bottom: 10px;
+      padding: 8px;
+      text-align: center;
+      align-items: center;
+ 
+    }
+    input ,select{
+      align-items: center;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+    
+    
+    }
+    button {
+      background-color: rgb(99, 187, 10);
+      margin: 6px auto;
+      font-family: Arial, Helvetica, sans-serif;
+       }
+       button:hover{
+        background-color: aliceblue;
+       }
+  </style>
+</head>
+<body>
+     <div class="nass">
+        <h1>بنك المستقبل</h1>
+        
+           <a href="index.html"> <i class=" index "></i>الرئيسية</a>
+            <a href="login.html"> <i class="login"></i>تسجيل الدخول </a> 
+            <a href="regist.html"> <i class="regist"></i>فتح الحساب</a>
+             <a href="Transactions.html"> <i class="transaction"></i> كشف الحسابات</a>
+            <a href="Transfer.html"> <i class="transfar"></i>التحويلات</a>
+            <a href="Calculator.html"> <i class="calculator "></i>اله حاسبه</a>
+            <a href="contect.html"> <i class=" contect "></i>اتصل بنا</a>
+        
+    </div>
+
+   <div class="box">
+  <!-- عنوان الصفحة -->
+  <h1>صفحة تحويل الأموال</h1>
+
+  <!-- أزرار التبويبات -->
+  <div class="tabs">
+    <button class="buttons" onclick="showTab('internal')">تحويل داخلي</button>
+    <button class="button" onclick="showTab('external')">تحويل خارجي</button>
+    <button class="button" onclick="showTab('international')">تحويل دولي</button>
+  </div>
+
+  <!-- تبويب التحويل الداخلي -->
+  <div id="internal" class="tab-content active">
+    <form onsubmit="saveTransaction(event, 'تحويل داخلي')">
+      <label>من حساب</label>
+      <input type="text" name="fromAccount" required>
+      <label>إلى حساب</label>
+      <input type="text" name="toAccount" required>
+      <label>المبلغ</label>
+      <input type="number" name="amount" required>
+      <label>ملاحظات</label>
+      <input type="text" name="notes">
+      <button type="submit">حفظ العملية</button>
+    </form>
+  </div>
+
+  <!-- تبويب التحويل الخارجي -->
+  <div id="external" class="tab-content">
+    <form onsubmit="saveTransaction(event, 'تحويل خارجي')">
+      <label>اسم البنك</label>
+      <input type="text" name="bank" required>
+      <label>رقم الحساب </label>
+      <input type="text" name="iban" required>
+      <label>المبلغ</label>
+      <input type="number" name="amount" required>
+      <label>ملاحظات</label>
+      <input type="text" name="notes">
+      <button type="submit">حفظ العملية</button>
+    </form>
+  </div>
+
+  <!-- تبويب التحويل الدولي -->
+  <div id="international" class="tab-content">
+    <form onsubmit="saveTransaction(event, 'تحويل دولي')">
+      <label>اسم المستفيد</label>
+      <input type="text" name="beneficiary" required>
+      <label>اسم البنك</label>
+      <select name="" id="">
+        <option value="1">الكريمي</option>
+        <option value="2">الاهلي</option>
+        <option value="3">الراجحي</option>
+        <option value="4">ون كاش</option>
+        <option value="5">اكسبرس</option>
+      </select>
+      <label>رقم الحساب</label>
+      <input type="text" name="iban" required>
+      <label>الدولة</label>
+      <select name="" id="">
+        <option value="1">اليمن</option>
+        <option value="2">السعودية</option>
+        <option value="3">قطر </option>
+        <option value="4">مصر</option>
+        <option value="5">الاردن</option>
+      </select>
+      <label>المبلغ</label>
+      <input type="number" name="amount" required>
+      <label>ملاحظات</label>
+      <input type="text" name="notes">
+      <button type="submit">حفظ العملية</button>
+    </form>
+  </div>
+   </div>
+
+  <!-- كود JavaScript -->
+  <script>
+    // دالة إظهار التبويب المطلوب
+    function showTab(tabId) {
+      // نخفي كل التبويبات
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      // نزيل تفعيل الأزرار
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // نُفعل التبويب المطلوب
+      document.getElementById(tabId).classList.add('active');
+      // نُفعل الزر المطلوب
+      event.target.classList.add('active');
+    }
+
+    // دالة حفظ العملية
+    function saveTransaction(event, type) {
+      event.preventDefault(); // منع إعادة تحميل الصفحة
+
+      const form = event.target; // جلب النموذج الحالي
+      const formData = new FormData(form); // استخراج البيانات من النموذج
+
+      // نحول البيانات إلى كائن (Object)
+      let transaction = { type: type, date: new Date().toLocaleString() };
+      formData.forEach((value, key) => {
+        transaction[key] = value;
+      });
+
+      // نجلب العمليات السابقة من Local Storage أو مصفوفة فارغة
+      let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+      // نضيف العملية الجديدة
+      transactions.push(transaction);
+
+      // نعيد الحفظ في Local Storage
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+
+      alert(" تم حفظ العملية بنجاح!");
+
+      // إعادة تعيين الحقول
+      form.reset();
+    }
+  </script>
+</body>
+</html>

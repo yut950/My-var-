@@ -1,0 +1,76 @@
+ .nass{
+            width: 220px;
+            background-color: #111;
+            padding: 20px;
+            color: rgb(39, 18, 204);
+            box-shadow: 2px 0 5px #124d58;
+         
+      }
+      .nass  a{
+            text-decoration: none;
+            display: block;
+            padding: 12px;
+            color: #ccc;
+            background-color: #58124a;
+      
+          }
+          .nass a:hover{
+            background-color: rgb(109, 124, 79);
+          }
+                       
+             .index::before{
+                content:"\1f3e0";
+              
+                margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+
+
+             }
+             .login::before{
+                content: "\1f511";
+                margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+            
+             
+
+                }
+            .regist::before{
+                content: "\1f465";
+                 margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+
+            }
+            .transaction::before{
+                content: "\1f4b0";
+                 margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+
+            }
+
+            .transfar::before{
+                content: "\1f4b3";
+                 margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+
+            }
+            .calculator::before{
+                content: "\1f522";
+                 margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+
+            }
+
+            .contect::before{
+                content: "\1f4de";
+                 margin: 8px ;
+                padding: 10px;
+                font-size: 20px;
+             }
+          
+         
